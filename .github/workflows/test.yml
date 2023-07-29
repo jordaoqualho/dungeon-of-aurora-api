@@ -20,7 +20,7 @@ jobs:
         with: 
             node-version: v16.19
       - name: Install Dependecies
-        run: npm
+        run: yarn
       - name: Run test
-        run: npm run test
+        run: yarn test
 
