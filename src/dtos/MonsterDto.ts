@@ -1,24 +1,27 @@
-import { IsEnum, IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Document } from 'mongoose';
 import { MonsterRaces } from '../types';
-import { Entity } from 'src/classes';
 
-export class MonsterDto extends Entity {
-  @IsEnum(MonsterRaces)
-  @IsNotEmpty()
+@Schema()
+export class MonsterEntity {
+  @Prop({ enum: MonsterRaces, required: true })
   race: MonsterRaces;
 
-  @IsNumber()
+  @Prop({ type: Number, required: true })
   challengeRating: number;
 
-  @IsString()
+  @Prop({ type: String, required: true })
   description: string;
 
-  @IsString({ each: true })
+  @Prop({ type: [String] }) // Mongoose will automatically create an array of strings
   senses: string[];
 
-  @IsNumber()
+  @Prop({ type: Number, required: true })
   passivePerception: number;
 
-  @IsNumber()
+  @Prop({ type: Number, required: true })
   challengeExperience: number;
 }
+
+export type MonsterEntityDocument = MonsterEntity & Document;
+export const MonsterEntitySchema = SchemaFactory.createForClass(MonsterEntity);

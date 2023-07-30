@@ -1,44 +1,34 @@
-import {
-  IsEnum,
-  IsNotEmpty,
-  IsNumber,
-  IsString,
-  Max,
-  Min,
-} from 'class-validator';
-import { Entity } from 'src/classes';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import mongoose, { Document } from 'mongoose';
 import { CharacterRaces, Classes, SkillType } from 'src/types';
 
-export class CharacterDto extends Entity {
-  @IsString()
-  @IsNotEmpty()
+export type CharacterDocument = Character & Document;
+
+@Schema()
+export class Character {
+  @Prop({ required: true, type: mongoose.Schema.Types.ObjectId, ref: 'Player' })
   playerId: string;
 
-  @IsEnum(Classes)
-  @IsNotEmpty()
+  @Prop({ required: true, enum: Classes })
   class: Classes;
 
-  @IsEnum(CharacterRaces)
-  @IsNotEmpty()
+  @Prop({ required: true, enum: CharacterRaces })
   race: CharacterRaces;
 
-  @IsEnum(SkillType, { each: true })
+  @Prop({ required: true, enum: SkillType, type: [String] })
   skills: SkillType[];
 
-  @IsString()
+  @Prop({ type: [String] })
   equipment: string[];
 
-  @IsNumber()
-  @IsNotEmpty()
+  @Prop({ required: true })
   gold: number;
 
-  @IsString()
-  @IsNotEmpty()
+  @Prop({ type: [String] })
   quests: string[];
 
-  @Min(1)
-  @Max(20)
-  @IsNotEmpty()
-  @IsNumber()
+  @Prop({ required: true, min: 1, max: 20 })
   inspiration: number;
 }
+
+export const CharacterSchema = SchemaFactory.createForClass(Character);

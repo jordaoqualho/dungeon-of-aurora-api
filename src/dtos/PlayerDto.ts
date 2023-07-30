@@ -1,32 +1,28 @@
-import {
-  IsEmail,
-  IsNotEmpty,
-  IsNumber,
-  IsString,
-  MinLength,
-} from 'class-validator';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Document } from 'mongoose';
 
-export class PlayerDTO {
-  @IsString()
-  @IsNotEmpty()
-  id: string;
-
-  @IsString()
-  @IsNotEmpty()
+@Schema({ collection: 'players', timestamps: true })
+export class PlayerDto extends Document {
+  @Prop({ required: true })
   name: string;
 
-  @IsString()
-  @MinLength(6)
-  @IsNotEmpty()
+  @Prop({ required: true })
   password: string;
 
-  @IsNotEmpty()
-  @IsEmail()
+  @Prop({ required: true })
   email: string;
 
-  @IsString()
+  @Prop()
   avatarUrl: string;
 
-  @IsNumber()
+  @Prop({ type: Number, default: 0 })
   totalGamesPlayed: number;
+
+  @Prop({ type: [{ type: String }] })
+  quests: string[];
+
+  @Prop({ type: Number, max: 1, default: 0 })
+  inspiration: number;
 }
+
+export const PlayerSchema = SchemaFactory.createForClass(PlayerDto);

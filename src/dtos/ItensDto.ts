@@ -1,18 +1,21 @@
-import { IsEnum, IsNotEmpty, IsNumber, IsString } from 'class-validator';
-import { EquipmentType } from 'src/types';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Document } from 'mongoose';
+import { EquipmentType } from '../types';
 
-export class Equipment {
-  @IsString()
-  @IsNotEmpty()
+@Schema()
+export class ItensDto {
+  @Prop({ type: String, required: true })
   name: string;
 
-  @IsEnum(EquipmentType)
-  @IsNotEmpty()
+  @Prop({ enum: EquipmentType, required: true })
   type: EquipmentType;
 
-  @IsNumber()
+  @Prop({ type: Number })
   damage?: number;
 
-  @IsString()
+  @Prop({ type: String })
   description?: string;
 }
+
+export type EquipmentEntityDocument = ItensDto & Document;
+export const EquipmentEntitySchema = SchemaFactory.createForClass(ItensDto);
