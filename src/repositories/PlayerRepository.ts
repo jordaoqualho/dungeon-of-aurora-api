@@ -9,12 +9,29 @@ export class PlayerRepository {
     @InjectModel(PlayerDto.name) private readonly playerModel: Model<PlayerDto>,
   ) {}
 
-  async findById(playerId: string) {
-    console.log('📌  playerId → ', playerId);
-  }
-
   async create(playerData: PlayerDto) {
     const newPlayer = new this.playerModel(playerData);
-    return newPlayer.save();
+    return await newPlayer.save();
+  }
+
+  async findById(playerId: string): Promise<PlayerDto | null> {
+    return await this.playerModel.findById(playerId).exec();
+  }
+
+  async findAll(): Promise<PlayerDto[] | null> {
+    return await this.playerModel.find().exec();
+  }
+
+  async update(
+    playerId: string,
+    updatePlayerData: PlayerDto,
+  ): Promise<PlayerDto> {
+    return this.playerModel
+      .findByIdAndUpdate(playerId, updatePlayerData, { new: true })
+      .exec();
+  }
+
+  async delete(playerId: string): Promise<void> {
+    await this.playerModel.findByIdAndDelete(playerId).exec();
   }
 }
