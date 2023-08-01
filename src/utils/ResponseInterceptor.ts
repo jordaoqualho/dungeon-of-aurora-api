@@ -1,11 +1,9 @@
 import {
   CallHandler,
   ExecutionContext,
-  HttpStatus,
   Injectable,
   NestInterceptor,
 } from '@nestjs/common';
-import { Response } from 'express';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -25,10 +23,13 @@ export class ResponseInterceptor implements NestInterceptor {
     };
 
     const httpMethod = context.switchToHttp().getRequest().method.toUpperCase();
+    const httpUrl = context.switchToHttp().getRequest().url;
 
     switch (httpMethod) {
       case 'POST':
-        response.message = 'Creation was successful';
+        response.message = httpUrl.includes('login')
+          ? 'Login was successful'
+          : 'Creation was successful';
         break;
       case 'PUT':
         response.message = 'Update was successful';

@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { PlayerRepository } from 'src/repositories';
-import { PlayerDto } from '../dtos/PlayerDto';
+import { LoginDto, PlayerDto } from '../dtos/PlayerDto';
 
 @Injectable()
 export class PlayerService {
@@ -8,6 +8,10 @@ export class PlayerService {
 
   async savePlayer(playerData: PlayerDto) {
     return await this.playerRepository.create(playerData);
+  }
+
+  async playerLogin(loginData: LoginDto) {
+    return await this.playerRepository.login(loginData);
   }
 
   async findPlayerById(playerId: string): Promise<PlayerDto> {

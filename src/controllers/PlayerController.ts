@@ -3,11 +3,12 @@ import {
   Controller,
   Delete,
   Get,
+  HttpCode,
   Param,
   Post,
   Put,
 } from '@nestjs/common';
-import { PlayerDto } from 'src/dtos';
+import { LoginDto, PlayerDto } from 'src/dtos';
 import { PlayerService } from 'src/services';
 
 @Controller('player')
@@ -17,6 +18,12 @@ export class PlayerController {
   @Post()
   async savePlayer(@Body() payload: PlayerDto) {
     return await this.playerService.savePlayer(payload);
+  }
+
+  @Post('login')
+  @HttpCode(200)
+  async playerLogin(@Body() loginData: LoginDto): Promise<void> {
+    return await this.playerService.playerLogin(loginData);
   }
 
   @Get('/:playerId?')

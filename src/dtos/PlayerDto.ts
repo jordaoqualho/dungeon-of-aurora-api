@@ -26,3 +26,8 @@ export class PlayerDto extends Document {
 }
 
 export const PlayerSchema = SchemaFactory.createForClass(PlayerDto);
+
+export class LoginDto {
+  email: string;
+  password: string;
+}
