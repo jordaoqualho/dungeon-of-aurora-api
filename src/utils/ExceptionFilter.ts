@@ -2,42 +2,53 @@ import {
   ArgumentsHost,
   BadRequestException,
   Catch,
-  HttpCode,
   HttpStatus,
   NotFoundException,
   UnauthorizedException,
 } from '@nestjs/common';
 import { BaseExceptionFilter } from '@nestjs/core';
 
+type Feedback = {
+  timestamp?: string;
+  status: number;
+  error: string;
+  message: string;
+};
+
 @Catch()
 export class ExceptionFilter extends BaseExceptionFilter {
   catch(exception: any, host: ArgumentsHost) {
-    const ctx = host.switchToHttp();
-    const response = ctx.getResponse();
+    const response = host.switchToHttp().getResponse();
+    const feedback = this.createFeedback(exception);
+    this.sendResponse(response, feedback);
+  }
 
-    let status = HttpStatus.INTERNAL_SERVER_ERROR;
-    let message = 'Internal server error';
+  private createFeedback(exception: any): Feedback {
+    const feedback: Feedback = {
+      // timestamp: new Date().toISOString(),
+      status: HttpStatus.INTERNAL_SERVER_ERROR,
+      error: 'Internal Server Error',
+      message: 'No message available',
+    };
 
-    if (exception instanceof Error) {
-      if (exception instanceof BadRequestException) {
-        status = HttpStatus.BAD_REQUEST;
-        message = exception.message;
-      } else if (exception instanceof NotFoundException) {
-        status = HttpStatus.NOT_FOUND;
-        message = 'Resource not found';
-      } else if (exception instanceof UnauthorizedException) {
-        status = HttpStatus.UNAUTHORIZED;
-        message = 'Unauthorized';
-      }
+    if (exception instanceof BadRequestException) {
+      feedback.status = HttpStatus.BAD_REQUEST;
+      feedback.error = 'Bad Request';
+      feedback.message = exception.message;
+    } else if (exception instanceof NotFoundException) {
+      feedback.status = HttpStatus.NOT_FOUND;
+      feedback.error = 'Not Found';
+      feedback.message = 'Resource not found on the database';
+    } else if (exception instanceof UnauthorizedException) {
+      feedback.status = HttpStatus.UNAUTHORIZED;
+      feedback.error = 'Unauthorized';
+      feedback.message = 'You are unauthorized for this action';
     }
 
-    response.status(status).json({
-      status: 'error',
-      message,
-      error: {
-        code: status || null,
-        message: exception?.message || message,
-      },
-    });
+    return feedback;
+  }
+
+  private sendResponse(response: any, feedback: Feedback) {
+    response.status(feedback.status).json(feedback);
   }
 }
