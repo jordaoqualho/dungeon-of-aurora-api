@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { LoginDto, PlayerDto } from 'src/dtos';
@@ -24,14 +24,14 @@ export class PlayerRepository {
       .findOne({ email })
       .exec();
 
-    if (!loginPlayer) throw new Error('Email not found');
+    if (!loginPlayer) throw new BadRequestException('Email not found');
 
     const isPasswordValid = await this.encryptor.comparePasswords(
-      loginPlayer.password,
       password,
+      loginPlayer.password,
     );
 
-    if (!isPasswordValid) throw new Error('Invalid password');
+    if (!isPasswordValid) throw new BadRequestException('Invalid password');
 
     return;
   }

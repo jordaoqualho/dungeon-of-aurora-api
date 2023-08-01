@@ -6,7 +6,7 @@ export class Encryptor {
   async hashPassword(password: string): Promise<string> {
     return bcrypt.hash(password, this.saltRounds);
   }
-  async comparePasswords(hash: string, password: string): Promise<boolean> {
-    return await bcrypt.compare(hash, password);
+  async comparePasswords(password: string, hash: string): Promise<boolean> {
+    return await bcrypt.compare(password, hash);
   }
 }
