@@ -24,14 +24,14 @@ export class PlayerRepository {
       .findOne({ email })
       .exec();
 
-    if (!loginPlayer) throw new Error('Invalid credentials');
+    if (!loginPlayer) throw new Error('Email not found');
 
     const isPasswordValid = await this.encryptor.comparePasswords(
       loginPlayer.password,
       password,
     );
 
-    if (!isPasswordValid) throw new Error('Invalid credentials');
+    if (!isPasswordValid) throw new Error('Invalid password');
 
     return;
   }
