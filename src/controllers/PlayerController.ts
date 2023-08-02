@@ -8,7 +8,8 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
-import { LoginDto, PlayerDto } from 'src/dtos';
+import { Login } from 'src/classes';
+import { PlayerDto } from 'src/dtos';
 import { PlayerService } from 'src/services';
 
 @Controller('player')
@@ -22,7 +23,7 @@ export class PlayerController {
 
   @Post('login')
   @HttpCode(200)
-  async playerLogin(@Body() loginData: LoginDto): Promise<void> {
+  async playerLogin(@Body() loginData: Login): Promise<void> {
     return await this.playerService.playerLogin(loginData);
   }
 

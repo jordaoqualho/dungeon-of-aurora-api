@@ -6,7 +6,7 @@ import {
   Max,
   Min,
 } from 'class-validator';
-import { CastingTime, Duration, SchoolOfMagic } from 'src/types/SpellsEnum';
+import { CastingTime, Duration, Range, SchoolOfMagic } from 'src/types';
 
 export class SpellDto {
   @IsString()

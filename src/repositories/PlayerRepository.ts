@@ -1,7 +1,8 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { LoginDto, PlayerDto } from 'src/dtos';
+import { Login } from 'src/classes';
+import { PlayerDto } from 'src/dtos';
 import { Encryptor } from 'src/utils';
 
 @Injectable()
@@ -19,7 +20,7 @@ export class PlayerRepository {
     return await newPlayer.save();
   }
 
-  async login({ email, password }: LoginDto) {
+  async login({ email, password }: Login) {
     const loginPlayer: PlayerDto = await this.playerModel
       .findOne({ email })
       .exec();
