@@ -2,10 +2,8 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose, { Document } from 'mongoose';
 import { CharacterRaces, Classes, SkillType } from 'src/types';
 
-export type CharacterDocument = Character & Document;
-
 @Schema()
-export class Character {
+export class CharacterDto {
   @Prop({ required: true, type: mongoose.Schema.Types.ObjectId, ref: 'Player' })
   playerId: string;
 
@@ -31,4 +29,5 @@ export class Character {
   inspiration: number;
 }
 
-export const CharacterSchema = SchemaFactory.createForClass(Character);
+export type CharacterEntity = CharacterDto & Document;
+export const CharacterSchema = SchemaFactory.createForClass(CharacterDto);

@@ -2,7 +2,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
 @Schema({ collection: 'players', timestamps: true })
-export class PlayerDto extends Document {
+export class PlayerDto {
   @Prop({ required: true })
   name: string;
 
@@ -25,9 +25,6 @@ export class PlayerDto extends Document {
   inspiration: number;
 }
 
-export const PlayerSchema = SchemaFactory.createForClass(PlayerDto);
+export type PlayerEntity = PlayerDto & Document;
 
-export class LoginDto {
-  email: string;
-  password: string;
-}
+export const PlayerSchema = SchemaFactory.createForClass(PlayerDto);
