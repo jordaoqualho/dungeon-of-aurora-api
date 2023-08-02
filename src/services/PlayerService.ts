@@ -6,7 +6,7 @@ import { LoginDto, PlayerDto } from '../dtos/PlayerDto';
 export class PlayerService {
   constructor(private readonly playerRepository: PlayerRepository) {}
 
-  async savePlayer(playerData: PlayerDto) {
+  async createPlayer(playerData: PlayerDto) {
     return await this.playerRepository.create(playerData);
   }
 
