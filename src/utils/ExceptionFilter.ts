@@ -28,7 +28,7 @@ export class ExceptionFilter extends BaseExceptionFilter {
       // timestamp: new Date().toISOString(),
       status: HttpStatus.INTERNAL_SERVER_ERROR,
       error: 'Internal Server Error',
-      message: 'No message available',
+      message: exception?.message || 'No message available',
     };
 
     if (exception instanceof BadRequestException) {

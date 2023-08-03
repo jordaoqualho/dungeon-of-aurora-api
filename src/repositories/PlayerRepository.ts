@@ -16,6 +16,11 @@ export class PlayerRepository {
     playerData.password = await this.encryptor.hashPassword(
       playerData.password,
     );
+    const alreadyExist = await this.playerModel
+      .findOne({ email: playerData.email })
+      .exec();
+
+    if (alreadyExist) throw new BadRequestException('Email already exists');
     const newPlayer = new this.playerModel(playerData);
     return await newPlayer.save();
   }

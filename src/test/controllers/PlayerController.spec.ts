@@ -1,3 +1,4 @@
+import { BadRequestException } from '@nestjs/common';
 import { getModelToken } from '@nestjs/mongoose';
 import { Test, TestingModule } from '@nestjs/testing';
 import { MongoMemoryServer } from 'mongodb-memory-server';
@@ -6,7 +7,7 @@ import { PlayerController } from 'src/controllers';
 import { PlayerDto, PlayerSchema } from 'src/dtos';
 import { PlayerRepository } from 'src/repositories';
 import { PlayerService } from 'src/services';
-import { mockLoginData, mockPlayerData } from '../mock';
+import { mockIncorrectLoginData, mockLoginData, mockPlayerData } from '../mock';
 
 describe('PlayerController', () => {
   let playerController: PlayerController;
@@ -48,7 +49,7 @@ describe('PlayerController', () => {
   // });
 
   describe('postPlayer', () => {
-    it('should return creating a player', async () => {
+    it('should return the created player data', async () => {
       const response = await playerController.createPlayer(mockPlayer);
       expect(response).toEqual(
         expect.objectContaining({
@@ -62,10 +63,17 @@ describe('PlayerController', () => {
         }),
       );
     });
+
+    it('should return BadRequestException "Email already exists"', async () => {
+      await playerController.createPlayer(mockPlayer).catch((error) => {
+        expect(error).toBeInstanceOf(BadRequestException);
+        expect(error.message).toContain('Email already exists');
+      });
+    });
   });
 
   describe('findPlayer', () => {
-    it('should return all the players', async () => {
+    it('should return an array of all players', async () => {
       const response = await playerController.findPlayer();
       expect(Array.isArray(response)).toBe(true);
       expect(response).toContainEqual(
@@ -85,8 +93,17 @@ describe('PlayerController', () => {
   describe('loginPlayer', () => {
     it('should return ok when correct login data', async () => {
       const mockLogin = mockLoginData();
-      const response = await playerController.playerLogin(mockLogin);
-      expect(response).toBe(undefined);
+      await playerController.playerLogin(mockLogin).then((response) => {
+        expect(response).toBe(undefined);
+      });
+    });
+
+    it('should return BadRequestException with "Email not found"', async () => {
+      const mockLogin = mockIncorrectLoginData();
+      await playerController.playerLogin(mockLogin).catch((error) => {
+        expect(error).toBeInstanceOf(BadRequestException);
+        expect(error.message).toContain('Email not found');
+      });
     });
   });
 });
