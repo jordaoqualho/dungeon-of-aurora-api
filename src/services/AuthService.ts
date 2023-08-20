@@ -17,12 +17,14 @@ class AuthService {
     );
     if (!userPassword) throw new BadRequestException('Email not found');
 
-    const isPasswordValid = await this.authProvider.compare(
+    const isPasswordValid = await this.authProvider.comparePasswords(
       loginPassword,
       userPassword,
     );
 
     if (!isPasswordValid) throw new BadRequestException('Invalid password');
-    return { access_token: this.authProvider.generateJwtToken(userPassword) };
+    return {
+      access_token: this.authProvider.generateAccessToken(userPassword),
+    };
   }
 }

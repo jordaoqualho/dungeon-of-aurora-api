@@ -11,14 +11,14 @@ export class AuthProvider {
     return await bcrypt.hash(textToEncrypt, this.saltOrRounds);
   }
 
-  public async compare(
+  public async comparePasswords(
     plainText: string,
     encryptedText: string,
   ): Promise<boolean> {
     return await bcrypt.compare(plainText, encryptedText);
   }
 
-  public generateJwtToken(userId: string): string {
+  public generateAccessToken(userId: string): string {
     return this.jwtService.sign({ sub: userId });
   }
 }
