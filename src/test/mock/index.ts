@@ -1,2 +1,2 @@
 export * from './LoginMock';
-export * from './PlayerMock';
+export * from './UserMock';

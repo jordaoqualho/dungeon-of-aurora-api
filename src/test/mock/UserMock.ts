@@ -1,6 +1,7 @@
-import { PlayerDto } from 'src/dtos';
+import { UserDto } from 'src/dtos';
 
-export const mockPlayerData = (): PlayerDto => ({
+export const mockUserData = (): UserDto => ({
+  id: '64c7abadcfd56eedb032fdd7',
   name: 'Jordão Qualho',
   password: 'jordaoqualho',
   email: 'jordaoqualho@gmail.com',

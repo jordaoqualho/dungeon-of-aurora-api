@@ -1,7 +1,7 @@
 import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { json, urlencoded } from 'express';
-import { local_port } from './config';
+import { env } from './config';
 import { AppModule } from './modules';
 import { ExceptionFilter, ResponseInterceptor } from './utils';
 
@@ -12,7 +12,7 @@ async function bootstrap() {
   app.enableCors();
   app.useGlobalFilters(new ExceptionFilter());
   app.useGlobalInterceptors(new ResponseInterceptor());
-  await app.listen(local_port);
-  Logger.debug(`Listening on http://localhost:${local_port}/`);
+  await app.listen(env.port);
+  Logger.debug(`Listening on http://localhost:${env.port}/`);
 }
 bootstrap();

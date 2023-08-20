@@ -4,8 +4,8 @@ import { CharacterRaces, Classes, SkillType } from 'src/types';
 
 @Schema()
 export class CharacterDto {
-  @Prop({ required: true, type: mongoose.Schema.Types.ObjectId, ref: 'Player' })
-  playerId: string;
+  @Prop({ required: true, type: mongoose.Schema.Types.ObjectId, ref: 'User' })
+  userId: string;
 
   @Prop({ required: true, enum: Classes })
   class: Classes;

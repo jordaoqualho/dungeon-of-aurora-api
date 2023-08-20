@@ -3,6 +3,7 @@
 This is the backend API for Dungeon of Aurora, an exciting text-based adventure game set in a magical world filled with dungeons, monsters, and quests. The API is built using Nest.js, a powerful Node.js framework.
 
 ## Table of Contents
+
 - [Getting Started](#getting-started)
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
@@ -32,7 +33,6 @@ git clone https://github.com/jordaoqualho/dungeon-of-aurora-api.git
 cd dungeon-of-aurora-api
 ```
 
-
 2. Install the dependencies:
 
 ```bash
@@ -50,6 +50,7 @@ JWT_SECRET=your_jwt_secret_here
 ```
 
 ## Usage
+
 To start the development server, run:
 
 ```bash
@@ -64,10 +65,10 @@ The API provides the following endpoints:
 
 - **GET /api/monsters**: Get a list of all monsters in the game.
 - **GET /api/monsters/:id**: Get details of a specific monster by its ID.
-- **POST /api/players**: Create a new player in the game.
-- **GET /api/players/:id**: Get player information by ID.
-- **PUT /api/players/:id**: Update player information by ID.
-- **DELETE /api/players/:id**: Delete a player from the game.
+- **POST /api/users**: Create a new user in the game.
+- **GET /api/users/:id**: Get user information by ID.
+- **PUT /api/users/:id**: Update user information by ID.
+- **DELETE /api/users/:id**: Delete a user from the game.
 
 For more detailed API documentation, refer to the [API documentation](link-to-your-documentation).
 

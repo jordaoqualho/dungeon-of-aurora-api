@@ -1,7 +1,7 @@
 import { IsBoolean, IsEnum, IsNotEmpty, IsNumber } from 'class-validator';
 import { Abilities, SkillType } from 'src/types';
 
-export class SkillDto {
+export class Skills {
   @IsEnum(SkillType)
   @IsNotEmpty()
   skill: SkillType;

@@ -1,1 +1,2 @@
-export * from './PlayerController';
+export * from './AuthController';
+export * from './UserController';

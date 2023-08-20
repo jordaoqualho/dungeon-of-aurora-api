@@ -8,7 +8,7 @@ import {
 } from 'class-validator';
 import { CastingTime, Duration, Range, SchoolOfMagic } from 'src/types';
 
-export class SpellDto {
+export class Spells {
   @IsString()
   @IsNotEmpty()
   name: string;

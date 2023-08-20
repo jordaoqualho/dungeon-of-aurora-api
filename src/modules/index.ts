@@ -1,2 +1,2 @@
 export * from './AppModule';
-export * from './PlayerModule';
+export * from './UserModule';

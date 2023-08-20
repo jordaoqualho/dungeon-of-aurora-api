@@ -1,1 +1,1 @@
-export * from './PlayerRepository';
+export * from './UserRepository';
