@@ -8,12 +8,14 @@ import {
   Put,
 } from '@nestjs/common';
 import { UserDto } from 'src/dtos';
+import { Public } from 'src/providers';
 import { UserService } from 'src/services';
 
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
+  @Public()
   @Post()
   async createUser(@Body() payload: UserDto) {
     return await this.userService.createUser(payload);

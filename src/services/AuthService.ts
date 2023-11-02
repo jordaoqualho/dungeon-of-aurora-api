@@ -12,19 +12,18 @@ class AuthService {
   ) {}
 
   async userLogin({ email, password: loginPassword }: Login): Promise<Token> {
-    const { password: userPassword } = await this.userRepository.findByEmail(
-      email,
-    );
-    if (!userPassword) throw new BadRequestException('Email not found');
+    const foundUser = await this.userRepository.findByEmail(email);
+
+    if (!foundUser) throw new BadRequestException('Email not found');
 
     const isPasswordValid = await this.authProvider.comparePasswords(
       loginPassword,
-      userPassword,
+      foundUser.password,
     );
 
     if (!isPasswordValid) throw new BadRequestException('Invalid password');
     return {
-      access_token: this.authProvider.generateAccessToken(userPassword),
+      access_token: this.authProvider.generateAccessToken(foundUser.password),
     };
   }
 }
