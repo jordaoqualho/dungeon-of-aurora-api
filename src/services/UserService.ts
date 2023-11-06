@@ -15,6 +15,10 @@ export class UserService {
     return await this.userRepository.login(loginData);
   }
 
+  async findUserByEmail(email: string): Promise<UserDto> {
+    return await this.userRepository.findByEmail(email);
+  }
+
   async findUserById(userId: string): Promise<UserDto> {
     return await this.userRepository.findById(userId);
   }

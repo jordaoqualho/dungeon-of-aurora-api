@@ -21,6 +21,12 @@ export class UserController {
     return await this.userService.createUser(payload);
   }
 
+  @Public()
+  @Get('/email/:email')
+  async findUserByEmail(@Param('email') email: string): Promise<UserDto> {
+    return await this.userService.findUserByEmail(email);
+  }
+
   @Get('/:userId?')
   async findUser(
     @Param('userId') userId?: string,
