@@ -27,6 +27,7 @@ export class UserController {
     return await this.userService.findUserByEmail(email);
   }
 
+  @Public()
   @Get('/:userId?')
   async findUser(
     @Param('userId') userId?: string,
@@ -35,6 +36,7 @@ export class UserController {
     return await this.userService.findAllUser();
   }
 
+  @Public()
   @Put('/:userId')
   async updateUser(
     @Param('userId') userId: string,
@@ -43,6 +45,7 @@ export class UserController {
     return this.userService.updateUser(userId, updateUserData);
   }
 
+  @Public()
   @Delete('/:userId')
   async deleteUser(@Param('userId') userId: string): Promise<void> {
     return this.userService.deleteUser(userId);
