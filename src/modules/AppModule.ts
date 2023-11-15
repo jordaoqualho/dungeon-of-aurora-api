@@ -3,6 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { env } from 'src/config';
 import { AuthModule } from './AuthModule';
+import { CharacterModule } from './CharacterModule';
 import { UserModule } from './UserModule';
 
 @Module({
@@ -11,6 +12,7 @@ import { UserModule } from './UserModule';
     ConfigModule.forRoot({ isGlobal: true }),
     UserModule,
     AuthModule,
+    CharacterModule,
   ],
 })
 export class AppModule {}

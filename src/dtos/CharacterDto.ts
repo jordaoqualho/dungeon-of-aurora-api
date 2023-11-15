@@ -1,31 +1,32 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose, { Document } from 'mongoose';
 import { CharacterRaces, Classes, SkillType } from 'src/types';
+import { EntityDto } from './EntityDto';
 
 @Schema()
-export class CharacterDto {
+export class CharacterDto extends EntityDto {
   @Prop({ required: true, type: mongoose.Schema.Types.ObjectId, ref: 'User' })
   userId: string;
 
-  @Prop({ required: true, enum: Classes })
+  @Prop({ enum: Classes })
   class: Classes;
 
-  @Prop({ required: true, enum: CharacterRaces })
+  @Prop({ enum: CharacterRaces })
   race: CharacterRaces;
 
-  @Prop({ required: true, enum: SkillType, type: [String] })
+  @Prop({ enum: SkillType, type: [String] })
   skills: SkillType[];
 
   @Prop({ type: [String] })
-  equipment: string[];
+  equipments: string[];
 
-  @Prop({ required: true })
+  @Prop({ type: Number, default: 0 })
   gold: number;
 
   @Prop({ type: [String] })
   quests: string[];
 
-  @Prop({ required: true, min: 1, max: 20 })
+  @Prop({ type: Number, max: 1, default: 0 })
   inspiration: number;
 }
 

@@ -7,10 +7,9 @@ import { UserRepository } from 'src/repositories';
 import { AuthService } from 'src/services';
 import { UserModule } from './UserModule';
 
-export
 @Module({
   imports: [JwtModule.register(jwtConfig), UserModule],
   controllers: [AuthController],
   providers: [UserRepository, AuthProvider, AuthService, GuardModule],
 })
-class AuthModule {}
+export class AuthModule {}
