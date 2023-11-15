@@ -1,0 +1,15 @@
+export enum DamageTypes {
+  ÁCIDO = 'Ácido',
+  CONTUNDENTE = 'Contundente',
+  FRIO = 'Frio',
+  FOGO = 'Fogo',
+  FORÇA = 'Força',
+  ELÉTRICO = 'Elétrico',
+  NECRÓTICO = 'Necrótico',
+  PERFURANTE = 'Perfurante',
+  VENENO = 'Veneno',
+  PSÍQUICO = 'Psíquico',
+  RADIANTE = 'Radiante',
+  CORTANTE = 'Cortante',
+  TROVÃO = 'Trovão',
+}

@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
-import { Attributes, SavingThrow, defaultAttribute } from 'src/classes';
+import { Attributes, SavingThrow, Spells, defaultAttribute } from 'src/classes';
 import { Alignment, Language, Status } from 'src/types';
 
 @Schema()
@@ -40,6 +40,9 @@ export class EntityDto {
 
   @Prop({ type: SavingThrow })
   savingThrow: SavingThrow;
+
+  @Prop()
+  spells: Spells[];
 }
 
 export type EntityEntity = EntityDto & Document;

@@ -1,4 +1,5 @@
 import {
+  IsBoolean,
   IsEnum,
   IsNotEmpty,
   IsNumber,
@@ -6,7 +7,14 @@ import {
   Max,
   Min,
 } from 'class-validator';
-import { CastingTime, Duration, Range, SchoolOfMagic } from 'src/types';
+import {
+  CastingTime,
+  Classes,
+  Duration,
+  Range,
+  SchoolOfMagic,
+} from 'src/types';
+import { Damage } from './Damage';
 
 export class Spells {
   @IsString()
@@ -18,6 +26,12 @@ export class Spells {
   @IsNumber()
   @IsNotEmpty()
   level: number;
+
+  @IsString()
+  description: string;
+
+  @IsString()
+  upgrade: string;
 
   @IsEnum(SchoolOfMagic)
   @IsNotEmpty()
@@ -35,6 +49,15 @@ export class Spells {
   @IsNotEmpty()
   duration: Duration;
 
-  @IsString()
-  description: string;
+  @IsBoolean()
+  ritual: boolean;
+
+  @IsBoolean()
+  concentration: boolean;
+
+  @IsEnum(Classes)
+  @IsNotEmpty()
+  classes: string;
+
+  damage: Damage;
 }
