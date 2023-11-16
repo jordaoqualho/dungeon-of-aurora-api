@@ -2,6 +2,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose, { Document } from 'mongoose';
 import { CharacterRaces, Classes, SkillType } from 'src/types';
 import { EntityDto } from './EntityDto';
+import { Features } from 'src/classes';
 
 @Schema()
 export class CharacterDto extends EntityDto {
@@ -28,6 +29,9 @@ export class CharacterDto extends EntityDto {
 
   @Prop({ type: Number, max: 1, default: 0 })
   inspiration: number;
+
+  @Prop()
+  features: Features[];
 }
 
 export type CharacterEntity = CharacterDto & Document;
