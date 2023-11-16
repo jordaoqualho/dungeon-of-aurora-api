@@ -20,12 +20,6 @@ export class UserDto {
 
   @Prop({ type: Number, default: 0 })
   totalGamesPlayed: number;
-
-  @Prop({ type: [{ type: String }] })
-  quests: string[];
-
-  @Prop({ type: Number, max: 1, default: 0 })
-  inspiration: number;
 }
 
 export type UserEntity = UserDto & Document;
