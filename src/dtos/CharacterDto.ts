@@ -32,6 +32,9 @@ export class CharacterDto extends EntityDto {
 
   @Prop()
   features: Features[];
+
+  @Prop()
+  picture?: string;
 }
 
 export type CharacterEntity = CharacterDto & Document;
