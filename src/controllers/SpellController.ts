@@ -45,6 +45,12 @@ export class SpellController {
     return this.spellService.deleteSpell(spellId);
   }
 
+  @Public()
+  @Post('/translate')
+  async translateSpells(): Promise<void> {
+    return this.spellService.callIt();
+  }
+
   @Delete()
   async deleteAllSpells(): Promise<void> {
     return this.spellService.deleteAllSpells();
