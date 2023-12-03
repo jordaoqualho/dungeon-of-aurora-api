@@ -1,7 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { SpellDto } from 'src/dtos';
+import { Spells } from 'src/classes';
+import { SpellDto, SpellSchema } from 'src/dtos';
 
 @Injectable()
 export class SpellRepository {
@@ -35,5 +36,9 @@ export class SpellRepository {
 
   async deleteAll(): Promise<void> {
     await this.spellModel.deleteMany().exec();
+  }
+
+  async createMany(spellList: any): Promise<void> {
+    await this.spellModel.insertMany(spellList);
   }
 }

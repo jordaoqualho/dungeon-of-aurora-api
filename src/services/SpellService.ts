@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
+import { translatedSpells } from 'backup/translatedSpells';
 import * as fs from 'fs';
 import { SpellRepository } from 'src/repositories';
 import { SpellDto } from '../dtos/SpellDto';
-import { ptSpellsName } from './ptSpellsName';
 
 export type DiceRolls = {
   quantity: number;
@@ -75,7 +75,7 @@ export class SpellService {
         throw err;
       }
       console.log(`\n----------------------------------------`);
-      console.log(`\n\n💾 ${name} was saved on backup folder!`);
+      console.log(`💾${name} was saved on backup folder!`);
     });
   };
 
@@ -273,6 +273,7 @@ export class SpellService {
   // }
 
   async callIt() {
-    this.spellRepository;
+    const spellList = translatedSpells;
+    this.spellRepository.createMany(spellList);
   }
 }
