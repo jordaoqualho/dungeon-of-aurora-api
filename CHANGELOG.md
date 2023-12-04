@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.5](https://github.com/jordaoqualho/dungeon-of-aurora-api/compare/v0.0.4...v0.0.5) (2023-12-04)
+
+
+### Features
+
+* 🎸 fix some test issues on the user controller ([40033ca](https://github.com/jordaoqualho/dungeon-of-aurora-api/commit/40033ca4f09717363fbe94f87678256c6c306279))
+
 ### [0.0.4](https://github.com/jordaoqualho/dungeon-of-aurora-api/compare/v0.0.3...v0.0.4) (2023-12-03)
 
 ### 0.0.3 (2023-12-03)
