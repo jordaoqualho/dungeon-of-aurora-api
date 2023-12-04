@@ -1,8 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { Spells } from 'src/classes';
-import { SpellDto, SpellSchema } from 'src/dtos';
+import { SpellDto } from 'src/dtos';
 
 @Injectable()
 export class SpellRepository {

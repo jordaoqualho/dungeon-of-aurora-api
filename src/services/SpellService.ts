@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { translatedSpells } from 'backup/translatedSpells';
 import * as fs from 'fs';
 import { SpellRepository } from 'src/repositories';
 import { SpellDto } from '../dtos/SpellDto';
@@ -273,7 +272,6 @@ export class SpellService {
   // }
 
   async callIt() {
-    const spellList = translatedSpells;
-    this.spellRepository.createMany(spellList);
+    console.log('called');
   }
 }
