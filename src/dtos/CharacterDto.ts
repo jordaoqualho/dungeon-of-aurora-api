@@ -4,7 +4,7 @@ import { CharacterRaces, Classes, SkillType } from 'src/types';
 import { EntityDto } from './EntityDto';
 import { Features } from 'src/classes';
 
-@Schema()
+@Schema({ collection: 'characters', timestamps: true, versionKey: false })
 export class CharacterDto extends EntityDto {
   @Prop({ required: true, type: mongoose.Schema.Types.ObjectId, ref: 'User' })
   userId: string;
