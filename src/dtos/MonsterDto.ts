@@ -2,7 +2,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 import { MonsterRaces } from '../types';
 
-@Schema()
+@Schema({ collection: 'monsters', timestamps: true, versionKey: false })
 export class MonsterEntity {
   @Prop({ enum: MonsterRaces, required: true })
   race: MonsterRaces;

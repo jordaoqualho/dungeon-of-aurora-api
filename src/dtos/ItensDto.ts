@@ -2,7 +2,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 import { EquipmentType } from '../types';
 
-@Schema()
+@Schema({ collection: 'itens', timestamps: true, versionKey: false })
 export class ItensDto {
   @Prop({ type: String, required: true })
   name: string;

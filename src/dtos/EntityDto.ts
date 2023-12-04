@@ -3,7 +3,7 @@ import { Document } from 'mongoose';
 import { Attributes, SavingThrow, Spells, defaultAttribute } from 'src/classes';
 import { Alignment, Language, Status } from 'src/types';
 
-@Schema()
+@Schema({ collection: 'entities', timestamps: true, versionKey: false })
 export class EntityDto {
   @Prop({ type: String })
   name: string;
