@@ -6,6 +6,7 @@ import {
   Param,
   Post,
   Put,
+  Query,
 } from '@nestjs/common';
 import { SpellDto } from 'src/dtos';
 import { Public } from 'src/providers';
@@ -19,6 +20,22 @@ export class SpellController {
   @Post()
   async createSpell(@Body() payload: SpellDto) {
     return await this.spellService.createSpell(payload);
+  }
+
+  @Public()
+  @Get('/search')
+  async searchSpells(
+    @Query('name') name?: string,
+    @Query('level') level?: number,
+    @Query('school') school?: string,
+    @Query('classes') classes?: string,
+  ): Promise<SpellDto[]> {
+    return await this.spellService.searchSpells({
+      name,
+      level,
+      school,
+      classes,
+    });
   }
 
   @Public()
