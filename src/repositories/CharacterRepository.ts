@@ -2,7 +2,6 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { CharacterDto } from 'src/dtos';
-import { Encryptor } from 'src/utils';
 
 @Injectable()
 export class CharacterRepository {
@@ -10,7 +9,6 @@ export class CharacterRepository {
     @InjectModel(CharacterDto.name)
     private readonly characterModel: Model<CharacterDto>,
   ) {}
-  private encryptor = new Encryptor();
 
   async create(characterData: CharacterDto) {
     const newCharacter = new this.characterModel(characterData);
@@ -19,6 +17,10 @@ export class CharacterRepository {
 
   async findByUserId(userId: string): Promise<CharacterDto[]> {
     return await this.characterModel.find({ userId }).exec();
+  }
+
+  async findByQuery(query: any): Promise<CharacterDto[]> {
+    return await this.characterModel.find(query).exec();
   }
 
   async findById(characterId: string): Promise<CharacterDto | null> {

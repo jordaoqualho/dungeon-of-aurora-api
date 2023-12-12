@@ -6,6 +6,7 @@ import {
   Param,
   Post,
   Put,
+  Query,
 } from '@nestjs/common';
 import { CharacterDto } from 'src/dtos';
 import { Public } from 'src/providers';
@@ -19,6 +20,18 @@ export class CharacterController {
   @Post()
   async createCharacter(@Body() payload: CharacterDto) {
     return await this.characterService.createCharacter(payload);
+  }
+
+  @Public()
+  @Get('/search')
+  async searchSpells(
+    @Query('name') name?: string,
+    @Query('level') level?: number,
+  ): Promise<CharacterDto[]> {
+    return await this.characterService.searchCharacters({
+      name,
+      level,
+    });
   }
 
   @Public()

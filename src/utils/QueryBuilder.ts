@@ -5,6 +5,11 @@ export type SpellFilters = {
   classes?: string;
 };
 
+export type CharacterFilters = {
+  name?: string;
+  level?: number;
+};
+
 export function buildSpellQuery(filters: SpellFilters): any {
   const query: any = {};
 
@@ -25,6 +30,19 @@ export function buildSpellQuery(filters: SpellFilters): any {
       .map((cls: string) => `(?=.*\\b${cls}\\b)`)
       .join('');
     query.classes = { $regex: new RegExp(regexPattern, 'i') };
+  }
+
+  return query;
+}
+
+export function buildCharacterQuery(filters: CharacterFilters): any {
+  const query: any = {};
+
+  if (filters.name) {
+    query.name = { $regex: new RegExp(`^${filters.name}`, 'i') };
+  }
+  if (filters.level) {
+    query.level = filters.level;
   }
 
   return query;
