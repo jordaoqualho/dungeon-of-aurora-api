@@ -19,6 +19,10 @@ export class SpellRepository {
     return await this.spellModel.findById(spellId).exec();
   }
 
+  async findByQuery(query: any): Promise<SpellDto[]> {
+    return await this.spellModel.find(query).exec();
+  }
+
   async findAll(): Promise<SpellDto[] | null> {
     return await this.spellModel.find().exec();
   }

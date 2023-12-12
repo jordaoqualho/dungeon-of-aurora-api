@@ -1,4 +1,4 @@
-name: Formater Tests
+name: Integration
 
 on: 
   push:

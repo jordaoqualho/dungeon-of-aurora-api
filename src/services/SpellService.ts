@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import * as fs from 'fs';
 import { SpellRepository } from 'src/repositories';
+import { SpellFilters, buildSpellQuery } from 'src/utils';
 import { SpellDto } from '../dtos/SpellDto';
 
 export type DiceRolls = {
@@ -37,6 +38,11 @@ export class SpellService {
 
   async findAllSpell(): Promise<SpellDto[]> {
     return await this.spellRepository.findAll();
+  }
+
+  async searchSpells(filters: SpellFilters): Promise<SpellDto[]> {
+    const query = buildSpellQuery(filters);
+    return await this.spellRepository.findByQuery(query);
   }
 
   async updateSpell(

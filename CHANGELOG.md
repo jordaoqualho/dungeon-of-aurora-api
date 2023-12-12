@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.7](https://github.com/jordaoqualho/dungeon-of-aurora-api/compare/v0.0.6...v0.0.7) (2023-12-12)
+
+
+### Features
+
+* 🎸 abstract query spell builder ([d518f01](https://github.com/jordaoqualho/dungeon-of-aurora-api/commit/d518f017b3aacc914b734a7ee56a3508a1f10400))
+* 🎸 add search rout to spells ([f08e492](https://github.com/jordaoqualho/dungeon-of-aurora-api/commit/f08e4925654694bc920f5ee4b7a94648a28ee71d))
+
 ### [0.0.6](https://github.com/jordaoqualho/dungeon-of-aurora-api/compare/v0.0.5...v0.0.6) (2023-12-12)
 
 

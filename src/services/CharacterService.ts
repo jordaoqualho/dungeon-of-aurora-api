@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { CharacterRepository } from 'src/repositories';
+import { CharacterFilters, buildCharacterQuery } from 'src/utils';
 import { CharacterDto } from '../dtos/CharacterDto';
 
 @Injectable()
@@ -8,6 +9,11 @@ export class CharacterService {
 
   async createCharacter(characterData: CharacterDto) {
     return await this.characterRepository.create(characterData);
+  }
+
+  async searchCharacters(filters: CharacterFilters): Promise<CharacterDto[]> {
+    const query = buildCharacterQuery(filters);
+    return await this.characterRepository.findByQuery(query);
   }
 
   async findAllUserCharacters(userId: string): Promise<CharacterDto[]> {
