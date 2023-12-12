@@ -39,6 +39,9 @@ export class SpellDto {
 
   @Prop({ type: Damage })
   damage: Damage;
+
+  @Prop({ type: [String] })
+  components?: string;
 }
 
 export type SpellEntity = SpellDto & Document;

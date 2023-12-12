@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.6](https://github.com/jordaoqualho/dungeon-of-aurora-api/compare/v0.0.5...v0.0.6) (2023-12-12)
+
+
+### Features
+
+* 🎸 add components props to spells ([6f12dea](https://github.com/jordaoqualho/dungeon-of-aurora-api/commit/6f12dea102a34debfa40d9aed06be30950b147ca))
+
 ### [0.0.5](https://github.com/jordaoqualho/dungeon-of-aurora-api/compare/v0.0.4...v0.0.5) (2023-12-04)
 
 
