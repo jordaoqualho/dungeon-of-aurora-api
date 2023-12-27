@@ -1,4 +1,5 @@
-import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { IsEnum, IsNotEmpty, IsString } from 'class-validator';
+import { Pieces } from 'src/types';
 
 export class Cost {
   @IsNotEmpty()
@@ -6,6 +7,6 @@ export class Cost {
   quantity: string;
 
   @IsNotEmpty()
-  @IsNumber()
-  unit: number;
+  @IsEnum(Pieces)
+  unit: Pieces;
 }

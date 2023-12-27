@@ -9,3 +9,4 @@ export * from './RacesEnum';
 export * from './SkillsEnum';
 export * from './SpellsEnum';
 export * from './StatusEnum';
+export * from './PiecesEnum';

@@ -1,20 +1,19 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
-import { EntityDto } from './EntityDto';
 import { Cost } from 'src/classes';
 
 @Schema({ collection: 'equipments', timestamps: true, versionKey: false })
-export class EquipmentDto extends EntityDto {
+export class EquipmentDto {
   @Prop({ type: String })
   name: string;
 
   @Prop({ type: [String] })
   description: string[];
 
-  @Prop({ type: Number, default: 0 })
+  @Prop({ type: Number, default: 1 })
   weight: number;
 
-  @Prop({ type: Number, default: 0 })
+  @Prop({ type: Number })
   quantity?: number;
 
   @Prop({ type: Cost })
