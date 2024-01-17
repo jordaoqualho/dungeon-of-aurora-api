@@ -44,6 +44,12 @@ export class EquipmentController {
   }
 
   @Public()
+  @Post('/translate')
+  async translateEquipments() {
+    return this.equipmentService.callIt();
+  }
+
+  @Public()
   @Delete('/:equipmentId')
   async deleteEquipment(
     @Param('equipmentId') equipmentId: string,

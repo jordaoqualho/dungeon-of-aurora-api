@@ -15,6 +15,10 @@ export class EquipmentRepository {
     return await newEquipment.save();
   }
 
+  async createMany(spellList: any): Promise<void> {
+    await this.equipmentModel.insertMany(spellList);
+  }
+
   async findById(equipmentId: string): Promise<EquipmentDto | null> {
     return await this.equipmentModel.findById(equipmentId).exec();
   }
