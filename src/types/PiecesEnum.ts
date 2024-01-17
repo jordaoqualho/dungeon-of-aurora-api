@@ -1,9 +1,9 @@
 export enum Pieces {
-  PECAS_DE_COBRE = 'PC',
-  PECAS_DE_PRATA = 'PP',
-  PECAS_DE_ELECTRUM = 'PE',
-  PECAS_DE_OURO = 'PO',
-  PECAS_DE_PLATINA = 'PL',
+  PECAS_DE_COBRE = 'pc',
+  PECAS_DE_PRATA = 'pp',
+  PECAS_DE_ELECTRUM = 'pe',
+  PECAS_DE_OURO = 'po',
+  PECAS_DE_PLATINA = 'pl',
 }
 
 // Peças de cobre(PC):
