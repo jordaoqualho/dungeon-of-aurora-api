@@ -1,12 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import * as fs from 'fs';
 import { SpellRepository } from 'src/repositories';
 import { SpellFilters, buildSpellQuery } from 'src/utils';
 import { SpellDto } from '../dtos/SpellDto';
 
 export type DiceRolls = {
   quantity: number;
-  dice: string;
+  type: string;
 };
 
 export type Damage = {
@@ -69,20 +68,6 @@ export class SpellService {
 
     return response.json();
   }
-
-  writeOnFile = (data: any, name: string) => {
-    const dataToWrite = JSON.stringify(data, null, 2);
-    const fileName = `unFormated${name}`;
-
-    fs.writeFile(`./backup/${fileName}.json`, dataToWrite, 'utf-8', (err) => {
-      if (err) {
-        console.error('Error saving data details:', err.message);
-        throw err;
-      }
-      console.log(`\n----------------------------------------`);
-      console.log(`💾${name} was saved on backup folder!`);
-    });
-  };
 
   // convertStringToDiceRolls(str: string): DiceRolls {
   //   const [quantityStr, diceType] = str.split('d');
