@@ -1,8 +1,8 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import mongoose, { Document } from 'mongoose';
+import mongoose, { Document, Types } from 'mongoose';
+import { Features } from 'src/classes';
 import { CharacterRaces, Classes, SkillType } from 'src/types';
 import { EntityDto } from './EntityDto';
-import { Features } from 'src/classes';
 
 @Schema({ collection: 'characters', timestamps: true, versionKey: false })
 export class CharacterDto extends EntityDto {
@@ -18,8 +18,8 @@ export class CharacterDto extends EntityDto {
   @Prop({ enum: SkillType, type: [String] })
   skills: SkillType[];
 
-  @Prop({ type: [String] })
-  equipments: string[];
+  @Prop({ type: [{ type: Types.ObjectId, ref: 'EquipmentDto' }] })
+  equipments: Types.ObjectId[];
 
   @Prop({ type: Number, default: 0 })
   gold: number;

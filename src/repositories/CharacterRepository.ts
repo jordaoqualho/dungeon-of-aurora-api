@@ -16,15 +16,21 @@ export class CharacterRepository {
   }
 
   async findByUserId(userId: string): Promise<CharacterDto[]> {
-    return await this.characterModel.find({ userId }).exec();
+    return await this.characterModel
+      .find({ userId })
+      .populate('equipments')
+      .exec();
   }
 
   async findByQuery(query: any): Promise<CharacterDto[]> {
-    return await this.characterModel.find(query).exec();
+    return await this.characterModel.find(query).populate('equipments').exec();
   }
 
   async findById(characterId: string): Promise<CharacterDto | null> {
-    return await this.characterModel.findById(characterId).exec();
+    return await this.characterModel
+      .findById(characterId)
+      .populate('equipments')
+      .exec();
   }
 
   async findAll(): Promise<CharacterDto[] | null> {
