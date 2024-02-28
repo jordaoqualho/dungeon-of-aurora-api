@@ -1,14 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { unFormatedEquipments } from 'backup/unFormatedEquipments';
-import { unFormatedEquipmentsText } from 'backup/unFormatedequipmentTranslated';
 import { EquipmentRepository } from 'src/repositories';
-import { sendToTranslator } from 'src/utils';
 import { EquipmentDto } from '../dtos/EquipmentDto';
-import {
-  convertPieces,
-  formatEquipment,
-  writeOnFile,
-} from './../utils/Translator';
 
 @Injectable()
 export class EquipmentService {
@@ -49,91 +41,91 @@ export class EquipmentService {
   //   return setting;
   // }
 
-  async translateObjects(obj: any, objIndex: number): Promise<any> {
-    if (typeof obj !== 'object' || obj === null) {
-      return obj;
-    }
+  // async translateObjects(obj: any, objIndex: number): Promise<any> {
+  //   if (typeof obj !== 'object' || obj === null) {
+  //     return obj;
+  //   }
 
-    const isArray = Array.isArray(obj);
-    const translatedObj: any = isArray ? [] : {};
-    const promises: Promise<any>[] = [];
+  //   const isArray = Array.isArray(obj);
+  //   const translatedObj: any = isArray ? [] : {};
+  //   const promises: Promise<any>[] = [];
 
-    for (const key of Object.keys(obj)) {
-      const value = obj[key];
-      const isArray = Array.isArray(value);
-      const isObject =
-        typeof value === 'object' && value !== null && !value?.length;
+  //   for (const key of Object.keys(obj)) {
+  //     const value = obj[key];
+  //     const isArray = Array.isArray(value);
+  //     const isObject =
+  //       typeof value === 'object' && value !== null && !value?.length;
 
-      if (isObject) {
-        if (key === 'cost') {
-          promises.push(
-            Promise.resolve({ ...value, unit: convertPieces(value.unit) }),
-          );
-        } else {
-          promises.push(this.translateObjects(value, objIndex));
-        }
-      } else if (isArray) {
-        const translatedArray: any[] = [];
-        for (let i = 0; i < value.length; i++) {
-          const isObject =
-            typeof value === 'object' && value[i] !== null && !value[i]?.length;
+  //     if (isObject) {
+  //       if (key === 'cost') {
+  //         promises.push(
+  //           Promise.resolve({ ...value, unit: convertPieces(value.unit) }),
+  //         );
+  //       } else {
+  //         promises.push(this.translateObjects(value, objIndex));
+  //       }
+  //     } else if (isArray) {
+  //       const translatedArray: any[] = [];
+  //       for (let i = 0; i < value.length; i++) {
+  //         const isObject =
+  //           typeof value === 'object' && value[i] !== null && !value[i]?.length;
 
-          let translatedValue;
-          if (isObject) {
-            translatedValue = {
-              item: await sendToTranslator(value[i].item),
-              quantity: value[i].quantity,
-            };
-          } else {
-            translatedValue = await sendToTranslator(value[i]);
-          }
-          translatedArray.push(translatedValue);
-        }
-        promises.push(Promise.resolve([...translatedArray]));
-      } else if (typeof value === 'string') {
-        promises.push(sendToTranslator(value));
-      } else {
-        promises.push(Promise.resolve(value));
-      }
+  //         let translatedValue;
+  //         if (isObject) {
+  //           translatedValue = {
+  //             item: await sendToTranslator(value[i].item),
+  //             quantity: value[i].quantity,
+  //           };
+  //         } else {
+  //           translatedValue = await sendToTranslator(value[i]);
+  //         }
+  //         translatedArray.push(translatedValue);
+  //       }
+  //       promises.push(Promise.resolve([...translatedArray]));
+  //     } else if (typeof value === 'string') {
+  //       promises.push(sendToTranslator(value));
+  //     } else {
+  //       promises.push(Promise.resolve(value));
+  //     }
 
-      const translatedValue = await promises[promises.length - 1];
-      translatedObj[key] = translatedValue;
-    }
+  //     const translatedValue = await promises[promises.length - 1];
+  //     translatedObj[key] = translatedValue;
+  //   }
 
-    await Promise.all(promises);
-    return translatedObj;
-  }
+  //   await Promise.all(promises);
+  //   return translatedObj;
+  // }
 
-  async callIt() {
-    const formatedData = formatEquipment(unFormatedEquipments);
-    const promises: Promise<any>[] = [];
-    let objIndex = 0;
-    const totalTimeStart = performance.now();
-    for (const equipment of formatedData) {
-      const startTime = performance.now();
-      promises.push(this.translateObjects(equipment, objIndex));
-      objIndex++;
-      await promises[promises.length - 1];
-      const endTime = performance.now();
-      const elapsedTime = (endTime - startTime) / 1000;
-      console.log(
-        `🈂️ ${equipment.name} was translated in ${elapsedTime.toFixed(2)}s`,
-      );
-    }
-    const translated = await Promise.all(promises);
-    const totalTimeEnd = performance.now();
-    const totalTime = (totalTimeEnd - totalTimeStart) / 1000;
-    const averageTimePerItem =
-      translated.length > 0 ? totalTime / translated.length : 0;
-    console.log(
-      `\n⏲️  ${translated.length} itens was translated in ${totalTime.toFixed(
-        2,
-      )}s`,
-    );
-    console.log(`🕒 Average time per item: ${averageTimePerItem.toFixed(2)}s`);
-    writeOnFile(translated, 'equipmentTranslated');
-    return translated;
-  }
+  // async callIt() {
+  //   const formatedData = formatEquipment(unFormatedEquipments);
+  //   const promises: Promise<any>[] = [];
+  //   let objIndex = 0;
+  //   const totalTimeStart = performance.now();
+  //   for (const equipment of formatedData) {
+  //     const startTime = performance.now();
+  //     promises.push(this.translateObjects(equipment, objIndex));
+  //     objIndex++;
+  //     await promises[promises.length - 1];
+  //     const endTime = performance.now();
+  //     const elapsedTime = (endTime - startTime) / 1000;
+  //     console.log(
+  //       `🈂️ ${equipment.name} was translated in ${elapsedTime.toFixed(2)}s`,
+  //     );
+  //   }
+  //   const translated = await Promise.all(promises);
+  //   const totalTimeEnd = performance.now();
+  //   const totalTime = (totalTimeEnd - totalTimeStart) / 1000;
+  //   const averageTimePerItem =
+  //     translated.length > 0 ? totalTime / translated.length : 0;
+  //   console.log(
+  //     `\n⏲️  ${translated.length} itens was translated in ${totalTime.toFixed(
+  //       2,
+  //     )}s`,
+  //   );
+  //   console.log(`🕒 Average time per item: ${averageTimePerItem.toFixed(2)}s`);
+  //   writeOnFile(translated, 'equipmentTranslated');
+  //   return translated;
+  // }
 
   async updateEquipment(
     equipmentId: string,

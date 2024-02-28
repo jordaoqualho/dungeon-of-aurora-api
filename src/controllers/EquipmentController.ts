@@ -43,11 +43,11 @@ export class EquipmentController {
     );
   }
 
-  @Public()
-  @Post('/translate')
-  async translateEquipments() {
-    return this.equipmentService.callIt();
-  }
+  // @Public()
+  // @Post('/translate')
+  // async translateEquipments() {
+  //   return this.equipmentService.callIt();
+  // }
 
   @Public()
   @Delete('/:equipmentId')
