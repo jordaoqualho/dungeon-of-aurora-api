@@ -3,6 +3,7 @@ export type SpellFilters = {
   level?: number;
   school?: string;
   classes?: string;
+  originalName?: string;
 };
 
 export type CharacterFilters = {
@@ -14,7 +15,10 @@ export function buildSpellQuery(filters: SpellFilters): any {
   const query: any = {};
 
   if (filters.name) {
-    query.name = { $regex: new RegExp(`^${filters.name}`, 'i') };
+    query.$or = [
+      { name: { $regex: new RegExp(`^${filters.name}`, 'i') } },
+      { originalName: { $regex: new RegExp(`^${filters.name}`, 'i') } },
+    ];
   }
   if (filters.level) {
     query.level = filters.level;
