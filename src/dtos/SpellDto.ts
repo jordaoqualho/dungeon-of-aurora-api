@@ -7,6 +7,9 @@ export class SpellDto {
   @Prop({ type: String })
   name: string;
 
+  @Prop({ type: String })
+  originalName: string;
+
   @Prop({ type: Number })
   level: number;
 

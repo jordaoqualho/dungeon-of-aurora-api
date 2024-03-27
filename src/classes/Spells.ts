@@ -21,6 +21,9 @@ export class Spells {
   @IsNotEmpty()
   name: string;
 
+  @IsString()
+  originalName: string;
+
   @Min(1)
   @Max(20)
   @IsNumber()

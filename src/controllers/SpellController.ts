@@ -35,6 +35,7 @@ export class SpellController {
       level,
       school,
       classes,
+      originalName: name,
     });
   }
 

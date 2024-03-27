@@ -14,6 +14,9 @@ export class EquipmentDto {
   @Prop({ type: String })
   name: string;
 
+  @Prop({ type: String })
+  originalName: string;
+
   @Prop({ type: Cost })
   cost: Cost;
 
