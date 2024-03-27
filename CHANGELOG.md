@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.1.0](https://github.com/jordaoqualho/dungeon-of-aurora-api/compare/v0.0.7...v0.1.0) (2024-03-27)
+
+
+### Features
+
+* 🎸 adding controller and stuff to equipments ([3cd37cc](https://github.com/jordaoqualho/dungeon-of-aurora-api/commit/3cd37cc1107bf7dd9c61f94f9c8c049cbc806fa8))
+* 🎸 adding original name to equipments ([d6a78c2](https://github.com/jordaoqualho/dungeon-of-aurora-api/commit/d6a78c201dc8b94ac9cfa11c19059b9c35f4f127))
+* 🎸 adding originalName search for spells ([6e27fa3](https://github.com/jordaoqualho/dungeon-of-aurora-api/commit/6e27fa31a10790b39f19f0a66171e2f0b4d7734a))
+* 🎸 creating equipment structure ([427bc7c](https://github.com/jordaoqualho/dungeon-of-aurora-api/commit/427bc7c70ed7ef822edacb2e8bb8811e3cb15aa3))
+* 🎸 implement character search route ([1008a4b](https://github.com/jordaoqualho/dungeon-of-aurora-api/commit/1008a4b462b18bd3655c5a58b8ffe6a9842b92ea))
+* 🎸 store equipment translate logic ([8885af6](https://github.com/jordaoqualho/dungeon-of-aurora-api/commit/8885af60087140c1388295f40047713bdcf9b081))
+* add pieces enum ([3da7de9](https://github.com/jordaoqualho/dungeon-of-aurora-api/commit/3da7de9055a94d2ed16cc9b0c1063baddf89a7c6))
+* adding the equipment to module ([b36e012](https://github.com/jordaoqualho/dungeon-of-aurora-api/commit/b36e012998ec6d18f752020b16005c345ed0a423))
+
+
+### Bug Fixes
+
+* 🐛 remove unused imports ([4e4012d](https://github.com/jordaoqualho/dungeon-of-aurora-api/commit/4e4012ded2bbd6f91e5f046d1cedbc04191ee640))
+
 ### [0.0.7](https://github.com/jordaoqualho/dungeon-of-aurora-api/compare/v0.0.6...v0.0.7) (2023-12-12)
 
 
